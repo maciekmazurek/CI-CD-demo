@@ -28,8 +28,10 @@ jobs:
       - name: Launch tests
         run: pytest test_app.py -v
 
-      - name: Dependency Review
-        uses: actions/dependency-review-action@v4
+      - name: Secret Scanning
+        uses: trufflesecurity/trufflehog@main
+        with:
+          extra_args: --results=verified,unknown
 
   build:
     name: Build Docker
